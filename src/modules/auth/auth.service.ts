@@ -5,7 +5,7 @@ import { ProfilesService } from '../profiles/profiles.service';
 @Injectable()
 export class AuthService {
   constructor(private readonly profilesService: ProfilesService) {}
-  register(RegisterRequestDto: RegisterRequestDto) {
+  register(registerRequestDto: RegisterRequestDto) {
     // verifico l'esistenza del profilo <mail> (FindProfile)
 
     // Esiste?
@@ -18,7 +18,7 @@ export class AuthService {
      * -- Creo un Profilo
      
     */
-    this.profilesService.create(RegisterRequestDto);
+    this.profilesService.create(registerRequestDto);
     /*
      * -- Mando la Mail
      * -- OK => Registrazione Registrata
