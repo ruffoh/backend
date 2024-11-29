@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { RegisterRequestDto } from './dto/auth.dto';
 import { ProfilesService } from '../profiles/profiles.service';
+import { Profile } from '../profiles/entities/profile.entity';
+import { DatabaseError } from '@utils/error/errors';
 
 @Injectable()
 export class AuthService {
   constructor(private readonly profilesService: ProfilesService) {}
-  register(registerRequestDto: RegisterRequestDto) {
+  async register(
+    registerRequestDto: RegisterRequestDto,
+  ): Promise<Profile | DatabaseError> {
     // verifico l'esistenza del profilo <mail> (FindProfile)
 
     // Esiste?
@@ -18,11 +22,10 @@ export class AuthService {
      * -- Creo un Profilo
      
     */
-    this.profilesService.create(registerRequestDto);
+    return await this.profilesService.create(registerRequestDto);
     /*
      * -- Mando la Mail
      * -- OK => Registrazione Registrata
      */
-    return 'ti sei registrato';
   }
 }

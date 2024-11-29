@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { RegisterRequestDto } from '../auth/dto/auth.dto';
 import { ProfilesRepository } from './profile.repository';
+import { DatabaseError } from '@utils/error/errors';
+import { Profile } from './entities/profile.entity';
 
 @Injectable()
 export class ProfilesService {
@@ -14,8 +16,9 @@ export class ProfilesService {
      *
      */
   }
-  create(registerRequestDto: RegisterRequestDto) {
-    this.profilesRepository.create(registerRequestDto);
-    console.log(registerRequestDto);
+  async create(
+    registerRequestDto: RegisterRequestDto,
+  ): Promise<Profile | DatabaseError> {
+    return await this.profilesRepository.create(registerRequestDto);
   }
 }

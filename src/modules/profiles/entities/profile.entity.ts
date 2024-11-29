@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
-import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, ObjectIdColumn } from 'typeorm';
+import { v4 } from 'uuid';
 
 @Entity('profiles')
 export class Profile {
@@ -20,4 +21,9 @@ export class Profile {
 
   @Column()
   bio: string;
+
+  @BeforeInsert()
+  private generateId() {
+    this.id = v4();
+  }
 }
