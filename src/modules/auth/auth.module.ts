@@ -1,21 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
 import { ProfilesModule } from '../profiles/profiles.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthService } from './auth.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      url: '',
-      type: 'mongodb',
-      database: 'giacomo-ruffoni-corso',
-      autoLoadEntities: true,
-      synchronize: true,
-    }),
-    ProfilesModule,
-    AuthModule,
-  ],
+  imports: [ProfilesModule],
   controllers: [AuthController],
   providers: [AuthService],
 })

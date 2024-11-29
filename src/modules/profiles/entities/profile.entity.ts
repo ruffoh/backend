@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb';
-import { Column, ObjectIdColumn } from 'typeorm';
+import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
+@Entity('profiles')
 export class Profile {
   @ObjectIdColumn()
   private _id: ObjectId;
@@ -13,6 +14,8 @@ export class Profile {
 
   @Column()
   password: string;
+
+  @Column()
   email: string;
 
   @Column()

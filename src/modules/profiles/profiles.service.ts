@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { RegisterRequestDto } from '../auth/dto/auth.dto';
 
 @Injectable()
 export class ProfilesService {
@@ -10,5 +11,8 @@ export class ProfilesService {
      * Se non lo trovo => errore
      *
      */
+  }
+  create(registerRequestDto: RegisterRequestDto) {
+    console.log(registerRequestDto);
   }
 }

@@ -16,6 +16,10 @@ export class AuthService {
      * -NO
      * -- Registro
      * -- Creo un Profilo
+     
+    */
+    this.profilesService.create(RegisterRequestDto);
+    /*
      * -- Mando la Mail
      * -- OK => Registrazione Registrata
      */
