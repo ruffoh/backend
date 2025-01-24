@@ -3,7 +3,7 @@
 
 ## Auth
 
-- Post Register
+- Post Register /auth/register
     Input : 
          - username
          - password 
@@ -11,6 +11,7 @@
     Output:
         - SUCCESSO: Utente correttamente registrato 
         - ERRORE: Password non sicura
+
 - Post Verifica
     INPUT:
         - Codice di verifica
@@ -18,13 +19,16 @@
     OUTPUT:
         - SUCCESSO: Verifica confermata
         - EMAIL: Verifica non completata! Errore!
+
 - Post Login
     INPUT:
         - username 
         - password
+        - email
     OUTPUT:
         -SUCCESSO: Login effettuato correttamente
         - ERRORE: Userna/Pass errate
+        - (Inviata email di conferma di registrazione)
     
 ## Profiles
 - Create Profile 

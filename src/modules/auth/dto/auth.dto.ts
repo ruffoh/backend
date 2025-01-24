@@ -12,3 +12,12 @@ export class RegisterRequestDto {
   @IsEmail()
   email: string;
 }
+
+export class LoginRequestDto {
+  @IsString()
+  password: string;
+
+  @IsString()
+  @IsEmail()
+  email: string;
+}
