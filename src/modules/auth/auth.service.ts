@@ -4,6 +4,7 @@ import { ProfilesService } from '../profiles/profiles.service';
 import { ProfileEntity } from '../profiles/entities/profile.entity';
 import { DatabaseError, isApplicationError } from '@utils/error/errors';
 import { JwtService } from '@nestjs/jwt';
+import { access } from 'fs';
 
 @Injectable()
 export class AuthService {
@@ -46,7 +47,10 @@ export class AuthService {
     if (profileResponse.password !== loginRequestDto.password) {
       return 'non ok';
     }
-    return this.jwtService.sign({ message: 'funziono' });
-    //restituisco il token
+
+    return {
+      access_token: this.jwtService.sign({ userId: profileResponse.id }),
+      //restituisco il token
+    };
   }
 }
