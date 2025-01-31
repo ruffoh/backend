@@ -4,7 +4,6 @@ import { ProfilesService } from '../profiles/profiles.service';
 import { ProfileEntity } from '../profiles/entities/profile.entity';
 import { DatabaseError, isApplicationError } from '@utils/error/errors';
 import { JwtService } from '@nestjs/jwt';
-import { access } from 'fs';
 
 @Injectable()
 export class AuthService {
