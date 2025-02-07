@@ -6,6 +6,6 @@ export class CreateChatDto {
   name: string;
   @IsArray()
   @IsString({ each: true })
-  @ArrayMinSize(2)
-  participansId: string;
+  @ArrayMinSize(1)
+  participantsId: string[];
 }

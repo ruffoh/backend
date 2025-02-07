@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 import { BeforeInsert, Column, Entity, ObjectIdColumn } from 'typeorm';
 import { v4 } from 'uuid';
 
-@Entity('')
+@Entity('chats')
 export class ChatEntity {
   @ObjectIdColumn()
   private _id: ObjectId;
