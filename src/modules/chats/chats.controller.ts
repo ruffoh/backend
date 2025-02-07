@@ -17,7 +17,7 @@ export class ChatsController {
   @Post()
   create(@Body() createChatDto: CreateChatDto) {
     console.log(createChatDto);
-    return this.chatsService.create();
+    return this.chatsService.create(createChatDto);
   }
 
   @Get()

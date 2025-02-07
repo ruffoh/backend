@@ -10,7 +10,7 @@ import { AuthGuard } from './auth.guard';
   imports: [
     JwtModule.register({
       secret: 'coglione1',
-      signOptions: { algorithm: 'HS256', expiresIn: 300 },
+      signOptions: { algorithm: 'HS256', expiresIn: 300000 },
     }),
     ProfilesModule,
   ],
