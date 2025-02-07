@@ -1,0 +1,25 @@
+meta {
+  name: Create Message
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/chats/:chatId/messages
+  body: json
+  auth: none
+}
+
+params:path {
+  chatId: d66d24d0-aea2-410d-93af-fd1fecdb3fd7
+}
+
+headers {
+  Authorization: Bearer {{TOKEN}}
+}
+
+body:json {
+  {
+    "text": "Sta sera sco"
+  }
+}

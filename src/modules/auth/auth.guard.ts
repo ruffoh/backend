@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private readonly reflector: Reflector,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
@@ -35,8 +35,9 @@ export class AuthGuard implements CanActivate {
       //  'il tuo header non contiene authorization sfigato non puoi',
     }
     const token = request.headers.authorization.replace('Bearer ', '');
-    console.log(token);
+    // console.log(token);
     try {
+      (request as any).user = this.jwtService.verify(token);
       this.jwtService.verify(token);
     } catch (error) {
       throw new UnauthorizedException(error);
