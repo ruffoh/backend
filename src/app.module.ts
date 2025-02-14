@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
 import { AuthModule } from './modules/auth/auth.module';
 
@@ -6,6 +6,7 @@ import { ProfilesModule } from './modules/profiles/profiles.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChatsModule } from './modules/chats/chats.module';
 import { MessageModule } from './modules/messages/messages.module';
+import { ContextMiddleware } from '@utils/middleware/context.middleware';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -23,4 +24,8 @@ import { MessageModule } from './modules/messages/messages.module';
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(ContextMiddleware).forRoutes('*');
+  }
+}
