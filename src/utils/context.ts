@@ -5,6 +5,9 @@ export const context = new AsyncLocalStorage<Map<string, unknown>>();
 export function createStoreWithTrasactionId() {
   const store = new Map<string, unknown>();
   const transactionId = v4();
-  store.set('trasactionId', transactionId);
+  store.set('transactionId', transactionId);
   return store;
+}
+export function getTransactionId() {
+  return context.getStore()?.get('transactionId');
 }

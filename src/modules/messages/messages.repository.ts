@@ -4,13 +4,17 @@ import { MongoRepository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MessageEntity } from './entities/message.entity';
 import { CreateMessageDto } from './dto/create-message.dto';
+import { BaseLogger } from '@utils/base-logger';
+import { getTransactionId } from '@utils/context';
 
 @Injectable()
-export class MessagesRepository {
+export class MessagesRepository extends BaseLogger {
   constructor(
     @InjectRepository(MessageEntity)
     private readonly dbConnection: MongoRepository<MessageEntity>,
-  ) {}
+  ) {
+    super();
+  }
 
   async create(
     chatId: string,
@@ -22,6 +26,9 @@ export class MessagesRepository {
       messageToSave.text = createMessageDto.text;
       messageToSave.senderId = senderId;
       messageToSave.chatId = chatId;
+      this.logger.debug('sto per salvare messaggio', {
+        transactionId: getTransactionId(),
+      });
 
       return await this.dbConnection.save(messageToSave);
     } catch (cause) {

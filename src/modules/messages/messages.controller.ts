@@ -4,6 +4,8 @@ import { GetProfileId } from '../auth/profile.decorator';
 import { MessagesService } from './messages.service';
 import { BaseLogger } from '@utils/base-logger';
 
+import { getTransactionId } from '@utils/context';
+
 @Controller('chats/:chatId/messages')
 export class MessagesController extends BaseLogger {
   constructor(private readonly messagesService: MessagesService) {
@@ -21,6 +23,7 @@ export class MessagesController extends BaseLogger {
     this.messagesService.create(chatId, createMessageDto, profileId);
     this.logger.debug('Un utente sta creando un messaggio', {
       chatId,
+      transactionId: getTransactionId(),
       //  createMessageDto, per privacy non si mette
       profileId,
     });
